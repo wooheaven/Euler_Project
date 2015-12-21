@@ -10,11 +10,11 @@ public class Problem32 {
 		System.out.println(numList.toString());
 
 		MultiplicandList mcList = new MultiplicandList(1);
-		mcList.makeList(numList);
+		mcList.makeList(numList.getIntegerArray());
 		System.out.println(mcList.toString());
 		
 		mcList = new MultiplicandList(2);
-		mcList.makeList(numList);
+		mcList.makeList(numList.getIntegerArray());
 		System.out.println(mcList.toString());
 	}
 }
@@ -34,8 +34,8 @@ class NumList {
 		StringBuilder sb = new StringBuilder();
 		sb.append("NumList\n");
 		for (int i = 0; i < numList.size(); i++) {
-			sb.append(i);
-			sb.append("\t");
+			sb.append(i+"번째 원소");
+			sb.append("\t=\t");
 			sb.append(numList.get(i));
 			sb.append("\n");
 		}
@@ -60,11 +60,10 @@ class MultiplicandList {
 		multiplicandList = new ArrayList<Integer>();
 	}
 
-	public void makeList(NumList numList) {
-		int[] input = numList.getIntegerArray();
+	public void makeList(int[] numList) {
 		if (1 == getCount()) {
-			for (int i = 0; i < input.length; i++) {
-				multiplicandList.add(input[i]);
+			for (int i = 0; i < numList.length; i++) {
+				multiplicandList.add(numList[i]);
 			}
 		} else if (getCount() >= 2) {
 
@@ -80,8 +79,8 @@ class MultiplicandList {
 		StringBuilder sb = new StringBuilder();
 		sb.append("MultiplicandList\n");
 		for (int i = 0; i < multiplicandList.size(); i++) {
-			sb.append(i);
-			sb.append("\t");
+			sb.append(i+"번째 원소");
+			sb.append("\t=\t");
 			sb.append(multiplicandList.get(i));
 			sb.append("\n");
 		}
