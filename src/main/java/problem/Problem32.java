@@ -6,74 +6,60 @@ import java.util.List;
 public class Problem32 {
 
 	public static void main(String[] args) {
-		NumList numList = new NumList();
-		System.out.println(numList.toString());
-
 		MultiplicandList mcList = new MultiplicandList(1);
-		mcList.makeList(numList.getIntegerArray());
+		mcList.subListOfPowerSet();
 		System.out.println(mcList.toString());
 		
 		mcList = new MultiplicandList(2);
-		mcList.makeList(numList.getIntegerArray());
+		mcList.subListOfPowerSet();
 		System.out.println(mcList.toString());
-	}
-}
-
-class NumList {
-	private List<Integer> numList = null;
-
-	public NumList() {
-		numList = new ArrayList<Integer>(9);
-		for (int i = 1; i < 10; i++) {
-			numList.add(i);
-		}
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("NumList\n");
-		for (int i = 0; i < numList.size(); i++) {
-			sb.append(i+"번째 원소");
-			sb.append("\t=\t");
-			sb.append(numList.get(i));
-			sb.append("\n");
-		}
-		return sb.toString();
-	}
-
-	public int[] getIntegerArray() {
-		int[] result = new int[numList.size()];
-		for (int i = 0; i < numList.size(); i++) {
-			result[i] = (int) numList.get(i);
-		}
-		return result;
 	}
 }
 
 class MultiplicandList {
 	private int digitCount;
-	private List<Integer> multiplicandList = null;
+	private List<Integer> multiplicandList;
+	private int[] numberList = {1,2,3,4,5,6,7,8,9};
 
 	public MultiplicandList(int count) {
 		this.digitCount = count;
 		multiplicandList = new ArrayList<Integer>();
 	}
 
-	public void makeList(int[] numList) {
-		if (1 == getCount()) {
-			for (int i = 0; i < numList.length; i++) {
-				multiplicandList.add(numList[i]);
+	public void subListOfPowerSet() {
+		while(1 <= digitCount){
+			if(0 == multiplicandList.size()){
+				for (int i = 0; i < numberList.length; i++) {
+					multiplicandList.add(numberList[i]);
+				}
 			}
-		} else if (getCount() >= 2) {
-
+			else {
+				
+			}
+			digitCount--;
 		}
 	}
 
-	public int getCount() {
+	public int getDigitCount() {
 		return digitCount;
 	}
 
+	public void setDigitCount(int digitCount) {
+		this.digitCount = digitCount;
+	}
+	
+	public List<Integer> getMultiplicandList() {
+		return multiplicandList;
+	}
+
+	public void setMultiplicandList(List<Integer> multiplicandList) {
+		this.multiplicandList = multiplicandList;
+	}
+
+	public int[] getNumberList() {
+		return numberList;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
