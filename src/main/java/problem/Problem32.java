@@ -9,7 +9,7 @@ public class Problem32 {
 		MultiplicandList mcList = new MultiplicandList(1);
 		mcList.subListOfPowerSet();
 		System.out.println(mcList.toString());
-		
+
 		mcList = new MultiplicandList(2);
 		mcList.subListOfPowerSet();
 		System.out.println(mcList.toString());
@@ -19,7 +19,7 @@ public class Problem32 {
 class MultiplicandList {
 	private int digitCount;
 	private List<Integer> multiplicandList;
-	private int[] numberList = {1,2,3,4,5,6,7,8,9};
+	private int[] numberList = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
 	public MultiplicandList(int count) {
 		this.digitCount = count;
@@ -27,14 +27,22 @@ class MultiplicandList {
 	}
 
 	public void subListOfPowerSet() {
-		while(1 <= digitCount){
-			if(0 == multiplicandList.size()){
+		while (1 <= digitCount) {
+			if (0 == multiplicandList.size()) {
 				for (int i = 0; i < numberList.length; i++) {
 					multiplicandList.add(numberList[i]);
 				}
-			}
-			else {
-				
+			} else {
+				List<Integer> tempMultiplicandList = new ArrayList<Integer>();
+				for (int i = 0; i < multiplicandList.size(); i++) {
+					for (int j = 0; j < numberList.length; j++) {
+						if (multiplicandList.get(i) != numberList[j]) {
+							int tempNum = multiplicandList.get(i) * 10 + numberList[j];
+							tempMultiplicandList.add(tempNum);
+						}
+					}
+				}
+				multiplicandList = tempMultiplicandList;
 			}
 			digitCount--;
 		}
@@ -47,7 +55,7 @@ class MultiplicandList {
 	public void setDigitCount(int digitCount) {
 		this.digitCount = digitCount;
 	}
-	
+
 	public List<Integer> getMultiplicandList() {
 		return multiplicandList;
 	}
@@ -59,13 +67,13 @@ class MultiplicandList {
 	public int[] getNumberList() {
 		return numberList;
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("MultiplicandList\n");
 		for (int i = 0; i < multiplicandList.size(); i++) {
-			sb.append(i+"번째 원소");
+			sb.append(i+1 + "번째 원소");
 			sb.append("\t=\t");
 			sb.append(multiplicandList.get(i));
 			sb.append("\n");
