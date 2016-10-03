@@ -8,7 +8,8 @@ public class Problem32Test {
 
     @Test
     public void test() {
-        fail("Not yet implemented");
+        Problem32 p32 = new Problem32Test();
+        assertTrue(p32.isPendigital(15234));
     }
 
 }
