@@ -11,11 +11,10 @@ public class Problem32Test {
         Problem32 p32 = new Problem32();
         assertTrue(p32.isPendigital(15234));
     }
-    
+
     @Test
     public void test15_234_to_true(){
         Problem32 p32 = new Problem32();
         assertTrue(p32.isPendigital(15,234));
     }
-
 }
