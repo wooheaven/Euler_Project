@@ -1,24 +1,45 @@
 package problem;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 
-public class Problem32Test {
-    private Problem32 p32;
-    @Before
-    public void setup(){
-        p32 = new Problem32();
-    }
-    
-    @Test
-    public void test15234_to_true() {
-        assertTrue(p32.isPendigital(15234));
-    }
+import static org.junit.Assert.assertTrue;
 
-    @Test
-    public void test15_234_to_true(){
-        assertTrue(p32.isPendigital(15,234));
-    }
+public class Problem32Test {
+	private Problem32 p32;
+
+	@Before
+	public void setup() {
+		p32 = new Problem32();
+	}
+
+	@Test
+	public void test_15234_is_uniq() {
+		assertTrue(p32.isUniqNumbers(15234));
+	}
+
+	@Test
+	public void test_15_234_are_uniq() {
+		assertTrue(p32.isUniqNumbers(15, 234));
+	}
+
+	@Test
+	public void test_15_23_4_are_uniq() {
+		assertTrue(p32.isUniqNumbers(15, 23, 4));
+	}
+
+	@Test
+	public void test_152346789_is_9pendigital() {
+		assertTrue(p32.isNinePendigital(152346789));
+	}
+
+	@Test
+	public void test_15_2346789_is_9pendigital() {
+		assertTrue(p32.isNinePendigital(15, 2346789));
+	}
+
+	@Test
+	public void test_15_23_46789_is_9pendigital() {
+		assertTrue(p32.isNinePendigital(15, 23, 46789));
+	}
 }
