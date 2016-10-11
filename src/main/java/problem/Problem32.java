@@ -1,5 +1,6 @@
 package problem;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -8,6 +9,12 @@ public class Problem32 {
     private HashSet<Integer> notUniqNumberSet = new HashSet<Integer>();
     private HashMap<String, String> pendigitalNumberHashMap = new HashMap<String, String>();
     private HashMap<String, String> notPendigitalNumberHashMap = new HashMap<String, String>();
+
+
+    private boolean isNinePendigital(int i, int j, BigInteger k) {
+        // TODO: 16. 10. 12 : expand k from int to BigInteger
+        return false;
+    }
 
     private boolean isNinePendigital(int i, int j, int k) {
         int[] intArray = new int[3];
