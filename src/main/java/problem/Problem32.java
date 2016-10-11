@@ -1,29 +1,22 @@
 package problem;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.HashSet;
 
 
 public class Problem32 {
-    private HashSet<Integer> notPendigitalNumbers = new HashSet<Integer>();
-    private HashMap<Integer, String> pendigitalNumbers = new HashMap<Integer, String>();
+    private HashSet<Integer> notUniqNumberSet = new HashSet<Integer>();
+    private HashMap<String, String> pendigitalNumberHashMap = new HashMap<String, String>();
+    private HashMap<String, String> notPendigitalNumberHashMap = new HashMap<String, String>();
 
-    public boolean isNinePendigital(int i) {
-        int[] intArray = new int[1];
-        intArray[0] = i;
 
-        return isNinePendigital(intArray);
+    private boolean isNinePendigital(int i, int j, BigInteger k) {
+        // TODO: 16. 10. 12 : expand k from int to BigInteger
+        return false;
     }
 
-    public boolean isNinePendigital(int i, int j) {
-        int[] intArray = new int[2];
-        intArray[0] = i;
-        intArray[1] = j;
-
-        return isNinePendigital(intArray);
-    }
-
-    public boolean isNinePendigital(int i, int j, int k) {
+    private boolean isNinePendigital(int i, int j, int k) {
         int[] intArray = new int[3];
         intArray[0] = i;
         intArray[1] = j;
@@ -54,26 +47,52 @@ public class Problem32 {
         }
     }
 
+    private boolean isUniq(int i) {
+        int digiCount = String.valueOf(i).length();
+
+        HashSet<Integer> digitNumbers = new HashSet<Integer>();
+        int tmpInt = i;
+        while (tmpInt % 10 > 0) {
+            digitNumbers.add(tmpInt % 10);
+            tmpInt = (tmpInt - tmpInt % 10) / 10;
+        }
+
+        return digiCount == digitNumbers.size();
+    }
+
     public boolean isNinePendigitalProduct(int i, int j) {
+        if (i > j) {
+            int tmp = i;
+            i = j;
+            j = tmp;
+        }
+
         int product = i * j;
-        if (notPendigitalNumbers.contains(i) || notPendigitalNumbers.contains(j) || notPendigitalNumbers.contains(product)) {
+        String key = i + "," + j;
+
+        if (!isUniq(i)) {
+            notUniqNumberSet.add(i);
+        }
+        if (!isUniq(j)) {
+            notUniqNumberSet.add(j);
+        }
+
+        if (notUniqNumberSet.contains(i) || notUniqNumberSet.contains(j)) {
+            return false;
+        } else if (pendigitalNumberHashMap.containsKey(key)) {
+            return true;
+        } else if (notPendigitalNumberHashMap.containsKey(key)) {
             return false;
         } else if (isNinePendigital(i, j, product)) {
-            pendigitalNumbers.put(pendigitalNumbers.size(), i + " * " + j + " = " + product);
-            System.out.println(i + " * " + j + " = " + product);
-            System.out.println(pendigitalNumbers.get(pendigitalNumbers.size()-1));
+            pendigitalNumberHashMap.put(key, i + " * " + j + " = " + product);
             return true;
         } else {
-            if (!isNinePendigital(i)) {
-                notPendigitalNumbers.add(i);
-            }
-            if (!isNinePendigital(j)) {
-                notPendigitalNumbers.add(j);
-            }
-            if (!isNinePendigital(product)) {
-                notPendigitalNumbers.add(product);
-            }
+            notPendigitalNumberHashMap.put(key, i + " * " + j + " = " + product);
             return false;
         }
+    }
+
+    public HashMap<String, String> getPendigitalNumberHashMap() {
+        return pendigitalNumberHashMap;
     }
 }
