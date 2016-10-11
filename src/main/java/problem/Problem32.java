@@ -1,9 +1,13 @@
 package problem;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 
 public class Problem32 {
+    private HashSet<Integer> notPendigitalNumbers = new HashSet<Integer>();
+    private HashMap<Integer, String> pendigitalNumbers = new HashMap<Integer, String>();
+
     public boolean isNinePendigital(int i) {
         int[] intArray = new int[1];
         intArray[0] = i;
@@ -43,9 +47,32 @@ public class Problem32 {
             }
         }
 
-        if(digitCount==digitNumbers.size() && digitCount == 9){
+        if (digitCount == digitNumbers.size() && digitCount == 9) {
             return true;
         } else {
+            return false;
+        }
+    }
+
+    public boolean isNinePendigitalProduct(int i, int j) {
+        int product = i * j;
+        if (notPendigitalNumbers.contains(i) || notPendigitalNumbers.contains(j) || notPendigitalNumbers.contains(product)) {
+            return false;
+        } else if (isNinePendigital(i, j, product)) {
+            pendigitalNumbers.put(pendigitalNumbers.size(), i + " * " + j + " = " + product);
+            System.out.println(i + " * " + j + " = " + product);
+            System.out.println(pendigitalNumbers.get(pendigitalNumbers.size()-1));
+            return true;
+        } else {
+            if (!isNinePendigital(i)) {
+                notPendigitalNumbers.add(i);
+            }
+            if (!isNinePendigital(j)) {
+                notPendigitalNumbers.add(j);
+            }
+            if (!isNinePendigital(product)) {
+                notPendigitalNumbers.add(product);
+            }
             return false;
         }
     }

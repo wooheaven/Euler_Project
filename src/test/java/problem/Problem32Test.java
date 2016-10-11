@@ -42,4 +42,9 @@ public class Problem32Test {
     public void test_15_23_46789_is_9pendigital() {
         assertTrue(p32.isNinePendigital(15, 23, 46789));
     }
+
+    @Test
+    public void test_39_186_is_9pendigitalProdouct() {
+        assertTrue(p32.isNinePendigitalProduct(39, 186));
+    }
 }
